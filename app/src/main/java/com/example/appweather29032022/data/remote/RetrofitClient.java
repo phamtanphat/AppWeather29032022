@@ -18,14 +18,16 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Retrofit support request api
+ * Retrofit Support Request Api
  */
 public class RetrofitClient {
     private static RetrofitClient instance = null;
     private Retrofit retrofit;
+    private ApiService apiService;
 
     private RetrofitClient() {
-
+        retrofit = createRetrofit();
+        apiService = retrofit.create(ApiService.class);
     }
 
     public static RetrofitClient getInstance() {
@@ -36,7 +38,8 @@ public class RetrofitClient {
     }
 
     /**
-     * Create instance retrofit
+     * Create Instance Retrofit
+     * @return Retrofit
      */
     private Retrofit createRetrofit() {
         HttpLoggingInterceptor logRequest = new HttpLoggingInterceptor();
@@ -57,5 +60,17 @@ public class RetrofitClient {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
+    }
+
+    /**
+     * Get Interface End Point
+     * @return ApiService
+     */
+    public ApiService getApiService(){
+        if (apiService != null) {
+            return apiService;
+        } else {
+            return retrofit.create(ApiService.class);
+        }
     }
 }
