@@ -88,66 +88,61 @@ public class WeatherSearchResponse {
     }
 
     public static class MainDTO {
-        @SerializedName("temp")
-        private int temp;
-        @SerializedName("temp_min")
-        private int tempMin;
-        @SerializedName("temp_max")
-        private int tempMax;
-        @SerializedName("pressure")
-        private int pressure;
-        @SerializedName("humidity")
-        private int humidity;
+        private float temp;
+        private float tempMin;
+        private float tempMax;
+        private float pressure;
+        private float humidity;
 
-        public int getTemp() {
+        public float getTemp() {
             return temp;
         }
 
-        public void setTemp(int temp) {
+        public void setTemp(float temp) {
             this.temp = temp;
         }
 
-        public int getTempMin() {
+        public float getTempMin() {
             return tempMin;
         }
 
-        public void setTempMin(int tempMin) {
+        public void setTempMin(float tempMin) {
             this.tempMin = tempMin;
         }
 
-        public int getTempMax() {
+        public float getTempMax() {
             return tempMax;
         }
 
-        public void setTempMax(int tempMax) {
+        public void setTempMax(float tempMax) {
             this.tempMax = tempMax;
         }
 
-        public int getPressure() {
+        public float getPressure() {
             return pressure;
         }
 
-        public void setPressure(int pressure) {
+        public void setPressure(float pressure) {
             this.pressure = pressure;
         }
 
-        public int getHumidity() {
+        public float getHumidity() {
             return humidity;
         }
 
-        public void setHumidity(int humidity) {
+        public void setHumidity(float humidity) {
             this.humidity = humidity;
         }
     }
 
     public static class WindDTO {
-        private double speed;
+        private float speed;
 
-        public double getSpeed() {
+        public float getSpeed() {
             return speed;
         }
 
-        public void setSpeed(double speed) {
+        public void setSpeed(float speed) {
             this.speed = speed;
         }
     }
@@ -165,18 +160,9 @@ public class WeatherSearchResponse {
     }
 
     public static class WeatherDTO {
-        private int id;
         private String main;
         private String description;
         private String icon;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
 
         public String getMain() {
             return main;
