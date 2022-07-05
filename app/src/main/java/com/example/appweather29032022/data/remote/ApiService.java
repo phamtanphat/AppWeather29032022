@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("data/2.5/weather")
-    Flowable<WeatherSearchResponse> searchTempFromCity(
+    Flowable<WeatherSearchResponse> searchCityName(
             @Query("appid") String appid,
             @Query("units") String units,
             @Query("q") String q

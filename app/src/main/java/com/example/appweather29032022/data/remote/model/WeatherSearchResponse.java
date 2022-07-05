@@ -63,31 +63,7 @@ public class WeatherSearchResponse {
         this.name = name;
     }
 
-
-    public static class CoordDTO {
-        @SerializedName("lon")
-        private double lon;
-        @SerializedName("lat")
-        private double lat;
-
-        public double getLon() {
-            return lon;
-        }
-
-        public void setLon(double lon) {
-            this.lon = lon;
-        }
-
-        public double getLat() {
-            return lat;
-        }
-
-        public void setLat(double lat) {
-            this.lat = lat;
-        }
-    }
-
-    public static class MainDTO {
+    public class MainDTO {
         private float temp;
         private float tempMin;
         private float tempMax;
@@ -135,7 +111,7 @@ public class WeatherSearchResponse {
         }
     }
 
-    public static class WindDTO {
+    public class WindDTO {
         private float speed;
 
         public float getSpeed() {
@@ -147,7 +123,7 @@ public class WeatherSearchResponse {
         }
     }
 
-    public static class SysDTO {
+    public class SysDTO {
         private String country;
 
         public String getCountry() {
@@ -159,7 +135,7 @@ public class WeatherSearchResponse {
         }
     }
 
-    public static class WeatherDTO {
+    public class WeatherDTO {
         private String main;
         private String description;
         private String icon;

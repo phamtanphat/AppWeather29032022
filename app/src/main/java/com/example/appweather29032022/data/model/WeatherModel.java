@@ -12,7 +12,7 @@ public class WeatherModel {
     private float tempMax;
     private float pressure;
     private float humidity;
-    private float speed;
+    private float windSpeed;
     private String time;
     private String country;
     private String name;
@@ -20,7 +20,7 @@ public class WeatherModel {
     public WeatherModel() {
     }
 
-    public WeatherModel(String main, String description, String icon, float temp, float tempMin, float tempMax, float pressure, float humidity, float speed, String time, String country, String name) {
+    public WeatherModel(String main, String description, String icon, float temp, float tempMin, float tempMax, float pressure, float humidity, float windSpeed, String time, String country, String name) {
         this.main = main;
         this.description = description;
         this.icon = icon;
@@ -29,7 +29,7 @@ public class WeatherModel {
         this.tempMax = tempMax;
         this.pressure = pressure;
         this.humidity = humidity;
-        this.speed = speed;
+        this.windSpeed = windSpeed;
         this.time = time;
         this.country = country;
         this.name = name;
@@ -99,12 +99,12 @@ public class WeatherModel {
         this.humidity = humidity;
     }
 
-    public float getSpeed() {
-        return speed;
+    public float getWindSpeed() {
+        return windSpeed;
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
+    public void setWindSpeed(float speed) {
+        this.windSpeed = speed;
     }
 
     public String getTime() {
@@ -142,7 +142,7 @@ public class WeatherModel {
                 ", tempMax=" + tempMax +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
-                ", speed=" + speed +
+                ", windSpeed=" + windSpeed +
                 ", time='" + time + '\'' +
                 ", country='" + country + '\'' +
                 ", name='" + name + '\'' +
