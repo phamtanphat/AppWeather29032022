@@ -9,12 +9,20 @@ import com.example.appweather29032022.data.model.WeatherModel;
 import com.example.appweather29032022.data.remote.model.WeatherSearchResponse;
 import com.example.appweather29032022.data.repository.WeatherRepository;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 /**
  * Created by pphat on 7/5/2022.
@@ -32,6 +40,10 @@ public class SearchWeatherViewModel extends ViewModel {
         return weather;
     }
 
+    public LiveData<String> getMessage() {
+        return message;
+    }
+
     public void searchCityName(String cityName) {
         repository
                 .searchCityName(cityName)
@@ -41,7 +53,7 @@ public class SearchWeatherViewModel extends ViewModel {
                     if (response.getWeather() != null && response.getWeather().size() > 0) {
                         weatherModel.setMain(response.getWeather().get(0).getMain());
                         weatherModel.setDescription(response.getWeather().get(0).getDescription());
-                        weatherModel.setDescription(response.getWeather().get(0).getIcon());
+                        weatherModel.setIcon(response.getWeather().get(0).getIcon());
                     }
 
                     if (response.getMain() != null) {
@@ -56,7 +68,7 @@ public class SearchWeatherViewModel extends ViewModel {
                         weatherModel.setWindSpeed(response.getWind().getSpeed());
                     }
 
-                    weatherModel.setTime(TimeFormat.convertMilliSecondToTime(response.getDt() * 1000));
+                    weatherModel.setTime(TimeFormat.convertMilliSecondToTime(response.getDt() * 1000L));
                     weatherModel.setCountry(response.getSys().getCountry());
                     weatherModel.setName(response.getName());
                     return weatherModel;
@@ -79,7 +91,15 @@ public class SearchWeatherViewModel extends ViewModel {
 
         @Override
         public void onError(@NonNull Throwable e) {
-            message.setValue(e.getMessage());
+            try {
+                JSONObject jsonObject = new JSONObject(((HttpException) e).response().errorBody().string());
+                String error = jsonObject.getString("message");
+                message.setValue(error);
+            } catch (JSONException jsonException) {
+                jsonException.printStackTrace();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
 
         @Override

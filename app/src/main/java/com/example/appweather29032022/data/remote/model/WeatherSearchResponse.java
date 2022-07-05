@@ -65,7 +65,9 @@ public class WeatherSearchResponse {
 
     public class MainDTO {
         private float temp;
+        @SerializedName("temp_min")
         private float tempMin;
+        @SerializedName("temp_max")
         private float tempMax;
         private float pressure;
         private float humidity;
